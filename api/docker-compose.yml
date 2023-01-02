@@ -1,0 +1,60 @@
+version: '3.5'
+
+services:
+  beer-dispenser-api-web:
+    container_name: beer-dispenser-api-web
+    build:
+      context: ./docker/nginx
+      args:
+        UID: $U_ID
+    ports:
+      - 280:80
+    volumes:
+      - ./public:/appdata/www/public
+    depends_on:
+      - beer-dispenser-api-be
+    networks:
+      - beer-dispenser-api-network
+
+  beer-dispenser-api-be:
+    container_name: beer-dispenser-api-be
+    build:
+      context: docker/php
+      args:
+        UID: $U_ID
+    environment:
+      XDEBUG_CLIENT_HOST: host.docker.internal
+      XDEBUG_CLIENT_PORT: 9003
+      PHP_IDE_CONFIG: serverName=Docker
+    volumes:
+      - ./:/appdata/www
+      - ./docker/php/xdebug-mac.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ~/.ssh/id_rsa:/home/appuser/.ssh/id_rsa
+    depends_on:
+      - beer-dispenser-api-db
+    networks:
+      - beer-dispenser-api-network
+
+  beer-dispenser-api-db:
+    container_name: beer-dispenser-api-db
+    build:
+      context: ./docker/database
+    ports:
+      - 36000:3306
+    environment:
+      MYSQL_DATABASE: symfony_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+    command: mysqld --sql_mode="STRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION"
+    volumes:
+      - beer-dispenser-api-db-data:/var/lib/mysql
+    networks:
+      - beer-dispenser-api-network
+
+volumes:
+  beer-dispenser-api-db-data:
+
+networks:
+  beer-dispenser-api-network:
+    external: true
