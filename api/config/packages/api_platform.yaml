@@ -12,4 +12,4 @@ api_platform:
                 type: header
     title: Beer Dispenser API
     version: 1.0
-    show_weby: false
+    show_webby: false
