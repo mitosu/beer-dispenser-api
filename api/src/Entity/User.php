@@ -103,7 +103,11 @@ class User implements UserInterface
         return [];
     }
 
-    public function getSalt(): string|null
+    /**
+     * Summary of getSalt
+     * @return string|null
+     */
+    public function getSalt()
     {
         return null;
     }
@@ -118,7 +122,11 @@ class User implements UserInterface
         //
     }
 
-    public function getPassword(): string|null
+    /**
+     * Summary of getPassword
+     * @return null|string
+     */
+    public function getPassword()
     {
         return null;
     }

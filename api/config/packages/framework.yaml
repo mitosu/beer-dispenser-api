@@ -17,7 +17,7 @@ framework:
     serializer:
         mapping:
             path:
-                - '%kernel.project_dir%/config/api_platform/serializations'
+                - '%kernel.project_dir%/config/api_platform/serialization'
 
 when@test:
     framework:
