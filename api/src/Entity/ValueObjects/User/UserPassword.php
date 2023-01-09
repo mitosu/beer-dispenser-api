@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity\ValueObjects\User;
 
-use InvalidArgumentException;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 final class UserPassword
 {
@@ -25,7 +25,7 @@ final class UserPassword
     private function validate(string $password)
     {
         if (strlen($password) < self::MIN_LENGTH) {
-            throw new InvalidArgumentException(
+            throw new BadRequestException(
                 sprintf('Password is too short. Minimun length is %s', self::MIN_LENGTH)
             );
         }

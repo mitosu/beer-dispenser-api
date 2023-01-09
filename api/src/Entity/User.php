@@ -18,67 +18,75 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface
 {
-    private UserId $id;
-    private UserName $name;
-    private UserEmail $email;
-    private ?UserPassword $password;
-    private ?UserToken $token;
-    private ?UserResetPasswordToken $resetPasswordToken;
-    private UserActive $active;
-    private UserCreatedAt $createdAt;
+    private string $id;
+    private string $name;
+    private string $email;
+    private ?string $password;
+    private ?string $token;
+    private ?string $resetPasswordToken;
+    private bool $active;
+    private DateTime $createdAt;
     private DateTime $updatedAt;
     
     public function __construct(string $name, string $email)
     {
-        $this->id = new UserId();
-        $this->name = new UserName($name);
-        $this->email = new UserEmail($email);
+        $userId = new UserId();
+        $userName = new UserName($name);
+        $userEmail = new UserEmail($email);
+        $userActive = new UserActive();
+        $userCreatedAt = new UserCreatedAt();
+        $userToken = new UserToken();
+        $userResetPasswordToken = new UserResetPasswordToken();
+
+        $this->id = $userId->value();
+        $this->name = $userName->value();
+        $this->email = $userEmail->value();
         $this->password = null;
-        $this->token = new UserToken();
-        $this->resetPasswordToken = null;
-        $this->active = new UserActive();
-        $this->createdAt = new UserCreatedAt();
+        $this->token = $userToken->value();
+        $this->resetPasswordToken = $userResetPasswordToken->value();
+        $this->active = $userActive->value();
+        $this->createdAt = $userCreatedAt->value();
         $this->updatedAt = $this->updatedAt();
     }
 
     public function id(): string
     {
-        return $this->id->value();
+        return $this->id;
     }
 
     public function name(): string
     {
-        return $this->name->value();
+        return $this->name;
     }
 
     public function email(): string
     {
-        return $this->email->value();
+        return $this->email;
     }
 
     public function password(): string
     {
-        return $this->password->value();
+        return $this->password;
     }
 
 	public function token(): ?string
     {
-		return $this->token->value();
+		return $this->token;
 	}
 
     public function resetPasswordToken(): string
     {
-        return $this->resetPasswordToken->value();
+        return $this->resetPasswordToken;
     }
 
     public function active(): bool
     {
-        return $this->active->value();
+        return $this->active;
     }
 
 	public function createdAt(): DateTime 
     {
-		return $this->createdAt->value();
+		return $this->createdAt;
 	}
 
 	public function getUpdatedAt(): DateTime 
@@ -90,12 +98,6 @@ class User implements UserInterface
     {
         $updatedAt =  new UserUpdatedAt();
         return $updatedAt->value();
-    }
-
-    public static function create(string $name, string $email) 
-    {
-        $user = new self($name, $email);
-        return $user;
     }
 
     public function getRoles(): array
@@ -114,7 +116,7 @@ class User implements UserInterface
 
     public function getUsername(): string
     {
-        return $this->email->value();
+        return $this->email;
     }
 
     public function eraseCredentials(): void
@@ -131,8 +133,14 @@ class User implements UserInterface
         return null;
     }
 
+    public function setPassword(?string $password): void
+    {
+        $password = new UserPassword($password);
+        $this->password = $password->value();
+    }
+
     public function getUserIdentifier(): string
     {
-        return $this->email->value();
+        return $this->email;
     }
 }

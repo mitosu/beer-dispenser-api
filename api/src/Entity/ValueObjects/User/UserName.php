@@ -8,7 +8,7 @@ use InvalidArgumentException;
 
 final class UserName
 {
-    private const MIN_LENGTH = 6;
+    private const MIN_LENGTH = 4;
     private $value;
 
     public function __construct(string $name)
