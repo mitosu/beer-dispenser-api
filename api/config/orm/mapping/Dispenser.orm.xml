@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+        <entity name="App\Entity\Dispenser" table="dispenser">
+            <id name="dispenserId" type="string" length="36"/>
+
+            <field name="dispenserFlowVolume" type="integer"/>
+            <field name="dispenserAmount" type="integer"/>
+            <field name="dispenserStatus" type="boolean"/>
+            <field name="createdAt" type="datetime"/>
+            <field name="updatedAt" type="datetime"/>
+
+            <lifecycle-callbacks>
+                <lifecycle-callback type="preUpdate" method="updatedAt"/>
+            </lifecycle-callbacks>
+        </entity>
+    </doctrine-mapping>    

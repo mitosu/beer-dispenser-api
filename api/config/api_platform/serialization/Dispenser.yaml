@@ -1,0 +1,14 @@
+App\Entity\Dispenser:
+  attributes:
+    dispenserId:
+      groups: ['read']
+    dispenserFlowVolume: 
+      groups: ['read', 'write']
+    dispenserAmount:
+      groups: ['read', 'write']
+    dispenserStatus:
+      groups: ['read']
+    createdAt:
+      groups: ['read']
+    updatedAt:
+      groups: ['read']

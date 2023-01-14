@@ -1,0 +1,16 @@
+App\Entity\Dispenser:
+  attributes:
+    normalization_context:
+      groups: ['read']
+    collectionOperations:
+      create:
+        method: POST
+        path: /dispensers/create
+        controller: App\Api\Action\Dispenser\Create
+        denormalization_context:
+          groups: ['write']
+        openapi_context:
+          summary: Create a new dispenser
+    itemOperations:
+      get:
+        method: GET
