@@ -1,0 +1,24 @@
+App\Entity\Dispense:
+  attributes:
+    normalization_context:
+      groups: ['dispense_read']
+  collectionOperations:
+    post:
+      method: POST
+      path: /dispense/open
+      controller: App\Api\Action\Dispense\Open
+      denormalization_context:
+          groups: ['dispense_write']
+      openapi_context:
+          summary: Start dispense to user.
+    post_close:
+        method: POST
+        path: /dispense/close
+        controller: App\Api\Action\Dispense\Close
+        denormalization_context:
+          groups: ['dispense_write']
+        openapi_context:
+          summary: Stop dispense to user.
+  itemOperations:
+    get:
+        method: GET

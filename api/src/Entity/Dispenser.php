@@ -34,22 +34,22 @@ class Dispenser
         $this->updatedAt = $this->updatedAt();
     }
 
-    public function dispenserId(): string
+    public function getDispenserId(): string
     {
         return $this->dispenserId;
     }
 
-    public function dispenserFlowVolume(): int
+    public function getDispenserFlowVolume(): int
     {
         return $this->dispenserFlowVolume;
     }
 
-    public function dispenserAmount(): int
+    public function getDispenserAmount(): int
     {
         return $this->dispenserAmount;
     }
 
-    public function dispenserStatus(): bool
+    public function getDispenserStatus(): bool
     {
         return $this->dispenserStatus;
     }

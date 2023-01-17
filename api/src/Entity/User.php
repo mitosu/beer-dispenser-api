@@ -49,17 +49,17 @@ class User implements UserInterface
         $this->updatedAt = $this->updatedAt();
     }
 
-    public function id(): string
+    public function getId(): string
     {
         return $this->id;
     }
 
-    public function name(): string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function email(): string
+    public function getMail(): string
     {
         return $this->email;
     }
@@ -79,7 +79,7 @@ class User implements UserInterface
         return $this->resetPasswordToken;
     }
 
-    public function active(): bool
+    public function getActive(): bool
     {
         return $this->active;
     }

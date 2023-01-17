@@ -1,14 +1,14 @@
 App\Entity\User:
   attributes:
     normalization_context:
-      groups: [user_read]
+      groups: ['user_read']
   collectionOperations:
     register:
       method: POST
       path: /users/register
       controller: App\Api\Action\User\Register
       denormalization_context:
-        groups: [user_write]
+        groups: ['user_write']
       openapi_context:
         summary: Register a new user
   itemOperations:

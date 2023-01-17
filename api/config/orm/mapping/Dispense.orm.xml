@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+        <entity name="App\Entity\Dispense" table="dispense">
+            <id name="id" type="string" length="36"/>
+
+            <field name="dispenserId" type="string"/>
+            <field name="userId" type="string"/>
+            <field name="status" type="boolean"/>
+            <field name="createdAt" type="datetime"/>
+        </entity>
+    </doctrine-mapping>

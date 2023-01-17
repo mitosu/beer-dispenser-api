@@ -2,7 +2,7 @@ App\Entity\Dispenser:
   attributes:
     normalization_context:
       groups: ['read']
-    collectionOperations:
+  collectionOperations:
       create:
         method: POST
         path: /dispensers/create
@@ -11,6 +11,6 @@ App\Entity\Dispenser:
           groups: ['write']
         openapi_context:
           summary: Create a new dispenser
-    itemOperations:
+  itemOperations:
       get:
         method: GET

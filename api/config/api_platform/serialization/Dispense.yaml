@@ -1,0 +1,12 @@
+App\Entity\Dispense:
+  attributes:
+    id:
+      groups: ['dispense_read']
+    dispenserId: 
+      groups: ['dispense_read', 'dispense_write']
+    userId:
+      groups: ['dispense_read', 'dispense_write']
+    status:
+      groups: ['dispense_read']
+    createdAt:
+      groups: ['dispense_read']
