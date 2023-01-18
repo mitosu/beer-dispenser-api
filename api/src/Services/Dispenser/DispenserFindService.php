@@ -6,9 +6,7 @@ namespace App\Services\Dispenser;
 
 use App\Entity\Dispenser;
 use App\Repository\DispenserRepository;
-use App\Services\Request\RequestService;
 use Exception;
-use Symfony\Component\HttpFoundation\Request;
 
 class DispenserFindService
 {
@@ -19,9 +17,8 @@ class DispenserFindService
         $this->dispenserRepository = $dispenserRepository;
     }
 
-    public function find(Request $request)
+    public function find(string $dispenserId): Dispenser
     {
-        $dispenserId = RequestService::getField($request, 'dispenserId');
         try {
         return $this->dispenserRepository->findOneByIdOrFail($dispenserId);
         } catch(Exception $e) {

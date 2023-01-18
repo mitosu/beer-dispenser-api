@@ -6,9 +6,7 @@ namespace App\Services\Dispenser;
 
 use App\Entity\Dispenser;
 use App\Repository\DispenserRepository;
-use App\Services\Request\RequestService;
 use Exception;
-use Symfony\Component\HttpFoundation\Request;
 
 class DispenserCreationService
 {
@@ -18,12 +16,9 @@ class DispenserCreationService
         $this->dispenserRepository = $dispenserRepository;
     }
 
-    public function create(Request $request): Dispenser
+    public function create(int $flowVolume, int $amount): Dispenser
     {
-        $dispenserFlowVolume = RequestService::getField($request, 'dispenserFlowVolume');
-        $dispenserAmount = RequestService::getField($request, 'dispenserAmount');
-
-        $dispenser = new Dispenser($dispenserFlowVolume, $dispenserAmount);
+        $dispenser = new Dispenser($flowVolume, $amount);
 
         try {
             $this->dispenserRepository->save($dispenser);

@@ -7,6 +7,7 @@ namespace App\Api\Action\Dispense;
 use App\Entity\Dispense;
 use Symfony\Component\HttpFoundation\Request;
 use App\Services\Dispense\DispenseOpenService;
+use App\Services\Request\RequestService;
 
 class Open
 {
@@ -18,6 +19,9 @@ class Open
 
     public function __invoke(Request $request): Dispense
     {
-        return $this->dispenseOpenService->open($request);
+        $dispenserId = RequestService::getField($request, 'dispenserId');
+        $userId = RequestService::getField($request, 'userId');
+
+        return $this->dispenseOpenService->open($dispenserId, $userId);
     }
 }

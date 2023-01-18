@@ -7,6 +7,7 @@ namespace App\Api\Action\User;
 use App\Entity\User;
 use App\Services\User\UserRegistrationService;
 use Symfony\Component\HttpFoundation\Request;
+use App\Services\Request\RequestService;
 
 class Register
 {
@@ -18,6 +19,10 @@ class Register
 
     public function __invoke(Request $request): User
     {
-        return $this->userRegistrationService->create($request);
+        $name = RequestService::getField($request, 'name');
+        $email = RequestService::getField($request, 'email');
+        $password = RequestService::getField($request, 'password');
+
+        return $this->userRegistrationService->create($name, $email, $password);
     }
 }

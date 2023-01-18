@@ -7,6 +7,7 @@ namespace App\Api\Action\Dispense;
 use App\Entity\Dispense;
 use Symfony\Component\HttpFoundation\Request;
 use App\Services\Dispense\DispenseCloseService;
+use App\Services\Request\RequestService;
 
 class Close
 {
@@ -18,6 +19,9 @@ class Close
 
     public function __invoke(Request $request): Dispense
     {
-        return $this->dispenseCloseService->close($request);
+        $dispenserId = RequestService::getField($request, 'dispenserId');
+        $userId = RequestService::getField($request, 'userId');
+
+        return $this->dispenseCloseService->close($dispenserId, $userId);
     }
 }

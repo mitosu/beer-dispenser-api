@@ -6,9 +6,7 @@ namespace App\Services\Dispense;
 
 use App\Entity\Dispense;
 use App\Repository\DispenseRepository;
-use App\Services\Request\RequestService;
 use Exception;
-use Symfony\Component\HttpFoundation\Request;
 use App\Services\Dispenser\DispenserUpdateStatus;
 
 class DispenseOpenService
@@ -21,11 +19,8 @@ class DispenseOpenService
         $this->dispenserUpdateStatusService = $dispenserUpdateStatus;
     }
 
-    public function open(Request $request): Dispense
+    public function open(string $dispenserId, string $userId): Dispense
     {
-        $dispenserId = RequestService::getField($request, 'dispenserId');
-        $userId = RequestService::getField($request, 'userId');
-
         $dispense = new Dispense($dispenserId, $userId);
         $dispense->dispenseStatus(true);
 

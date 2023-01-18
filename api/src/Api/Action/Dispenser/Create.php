@@ -7,6 +7,7 @@ namespace App\Api\Action\Dispenser;
 use App\Entity\Dispenser;
 use Symfony\Component\HttpFoundation\Request;
 use App\Services\Dispenser\DispenserCreationService;
+use App\Services\Request\RequestService;
 
 class Create
 {
@@ -18,6 +19,9 @@ class Create
 
     public function __invoke(Request $request): Dispenser
     {
-        return $this->dispenserCreationService->create($request);
+        $dispenserFlowVolume = RequestService::getField($request, 'dispenserFlowVolume');
+        $dispenserAmount = RequestService::getField($request, 'dispenserAmount');
+
+        return $this->dispenserCreationService->create($dispenserFlowVolume, $dispenserAmount);
     }
 }

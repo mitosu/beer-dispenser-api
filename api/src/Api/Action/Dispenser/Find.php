@@ -7,6 +7,7 @@ namespace App\Api\Action\Dispenser;
 use App\Entity\Dispenser;
 use App\Services\Dispenser\DispenserFindService;
 use Symfony\Component\HttpFoundation\Request;
+use App\Services\Request\RequestService;
 
 class Find
 {
@@ -19,6 +20,7 @@ class Find
 
     public function __invoke(Request $request)
     {
-        return $this->dispenserFindService->find($request);
+        $dispenserId = RequestService::getField($request, 'dispenserId');
+        return $this->dispenserFindService->find($dispenserId);
     }
 }
