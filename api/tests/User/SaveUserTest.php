@@ -21,8 +21,8 @@ class SaveUserTest extends KernelTestCase
         $user = new User('Miguel Torres', 'migueltorres@mail.com');
         
         $this->userRepository->save($user);
-        $newUser = $this->userRepository->findUserByEmail($user->email());
+        $newUser = $this->userRepository->findUserByEmail($user->getMail());
 
-        $this->assertEquals($user->email(), $newUser->email());
+        $this->assertEquals($user->getMail(), $newUser->getMail());
     }
 }
