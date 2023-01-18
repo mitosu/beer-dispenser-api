@@ -54,6 +54,11 @@ class Dispenser
         return $this->dispenserStatus;
     }
 
+    public function dispenserStatus(bool $status)
+    {
+        $this->dispenserStatus = $status;
+    }
+
     public function updateAmount($aAmount): int
     {
         $amount = new DispenserAmount($this->dispenserAmount);

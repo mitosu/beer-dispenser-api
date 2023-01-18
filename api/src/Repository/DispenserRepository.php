@@ -43,10 +43,10 @@ class DispenserRepository extends BaseRepository
         $this->removeEntity($dispenser);
     }
 
-    public function findDispenserById(string $dispenserId): Dispenser
+    public function findOneByIdOrFail(string $id): Dispenser
     {
-        if (null === $dispenser = $this->objectRepository()->findOneBy(['dispenser_id' => $dispenserId])) {
-            throw new DispenserNotFoundException();
+        if (null === $dispenser = $this->objectRepository->find($id)) {
+            DispenserNotFoundException::fromId();
         }
 
         return $dispenser;

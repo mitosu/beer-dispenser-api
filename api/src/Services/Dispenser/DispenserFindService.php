@@ -23,7 +23,7 @@ class DispenserFindService
     {
         $dispenserId = RequestService::getField($request, 'dispenserId');
         try {
-        return $this->dispenserRepository->findDispenserById($dispenserId);
+        return $this->dispenserRepository->findOneByIdOrFail($dispenserId);
         } catch(Exception $e) {
 
         }

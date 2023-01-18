@@ -9,13 +9,16 @@ use App\Repository\DispenseRepository;
 use App\Services\Request\RequestService;
 use Exception;
 use Symfony\Component\HttpFoundation\Request;
+use App\Services\Dispenser\DispenserUpdateStatus;
 
 class DispenseCloseService
 {
     private DispenseRepository $dispenseRepository;
-    public function __construct(DispenseRepository $dispenseRepository)
+    private DispenserUpdateStatus $dispenserUpdateStatusService;
+    public function __construct(DispenseRepository $dispenseRepository, DispenserUpdateStatus $dispenserUpdateStatus)
     {
         $this->dispenseRepository = $dispenseRepository;
+        $this->dispenserUpdateStatusService = $dispenserUpdateStatus;
     }
 
     public function close(Request $request): Dispense
@@ -26,6 +29,7 @@ class DispenseCloseService
         $dispense = new Dispense($dispenserId, $userId);
         $dispense->dispenseStatus(false);
 
+        $this->dispenserUpdateStatusService->update($dispenserId, false);
         try {
             $this->dispenseRepository->save($dispense);
         } catch (Exception $e) {
