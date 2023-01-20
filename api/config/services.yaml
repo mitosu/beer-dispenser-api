@@ -27,3 +27,7 @@ services:
     App\Api\Listener\TransformerExceptionToJsonResponse:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException, priority: 100 }
+
+    App\Listener\Dispenser\DispenserUsedSubscriber:
+        tags:
+            - { name: kernel.event_subscriber, event: dispenser.used }

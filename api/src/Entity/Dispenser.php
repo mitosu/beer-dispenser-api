@@ -54,16 +54,16 @@ class Dispenser
         return $this->dispenserStatus;
     }
 
-    public function dispenserStatus(bool $status)
+    public function dispenserStatus(bool $status): void
     {
         $this->dispenserStatus = $status;
     }
 
-    public function updateAmount($aAmount): int
+    public function decreaaseUpdateAmount($aAmount): void
     {
         $amount = new DispenserAmount($this->dispenserAmount);
         $updatedAmount = $amount->decreaseAmountBy($aAmount);
-        return $updatedAmount->value();
+        $this->dispenserAmount = $updatedAmount->value();
     }
 
     public function updatedAt(): DateTime

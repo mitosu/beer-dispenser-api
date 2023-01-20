@@ -12,4 +12,9 @@ class DispenseNotFoundException extends NotFoundHttpException
     {
         throw new self('The dispense not found');
     }
+
+    public static function fromIdAndStatus()
+    {
+        throw new self('The dispense not found');
+    }
 }

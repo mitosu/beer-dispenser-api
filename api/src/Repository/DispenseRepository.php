@@ -39,4 +39,18 @@ class DispenseRepository extends BaseRepository
 
         return $dispense;
     }
+
+    public function findOneByIdAndStatusOrFail(string $dispenserId, bool $status)
+    {
+        $dispense = $this->executeFetchQuery(
+            'SELECT * FROM dispense WHERE dispenser_id = :dispenser_id AND status = :status',
+            ['dispenser_id' => $dispenserId, 'status' => $status]
+        );
+        
+        if (is_null($dispense) ) {
+            DispenseNotFoundException::fromIdAndStatus();
+        }
+
+        return $dispense;
+    }
 }
