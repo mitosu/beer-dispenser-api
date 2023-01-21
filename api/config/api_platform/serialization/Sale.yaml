@@ -1,0 +1,12 @@
+App\Entity\Sale:
+  attributes:
+    saleId:
+      groups: ['read']
+    dispenserId: 
+      groups: ['read']
+    litersSold:
+      groups: ['read']
+    secondsUsed:
+      groups: ['read']
+    createdAt:
+      groups: ['read']

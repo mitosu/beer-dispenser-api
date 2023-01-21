@@ -44,4 +44,13 @@ class SaleRepository extends BaseRepository
 
         return $sales;
     }
+
+    public function findOneByIdOrFail(string $id)
+    {
+        if (null === $sale = $this->objectRepository->find($id)) {
+            DispenserNotFoundException::fromId();
+        }
+
+        return $sale;
+    }
 }

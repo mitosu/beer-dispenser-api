@@ -1,0 +1,11 @@
+App\Entity\Sale:
+  attributes:
+    normalization_context:
+      groups: ['read']
+  collectionOperations:
+      summary:
+        method: 'GET'
+        path: '/sales'
+  itemOperations:
+      get:
+        method: GET

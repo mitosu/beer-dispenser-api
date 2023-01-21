@@ -44,6 +44,13 @@ class Close
         return $dispenseClosed;
     }
 
+    /**
+     * Summary of dispatchEvent
+     * @param string $dispenserId
+     * @param mixed $dispenseOpen
+     * @param mixed $dispenseClosed
+     * @return void
+     */
     private function dispatchEvent(string $dispenserId, $dispenseOpen, $dispenseClosed)
     {
         $this->eventDispacherInterface->dispatch(
