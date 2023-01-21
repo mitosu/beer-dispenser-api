@@ -8,24 +8,44 @@ use App\Event\Dispenser\DispenserUsedEvent;
 use App\Repository\DispenserRepository;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use App\Entity\Dispenser;
+use App\Services\Sale\SaleRegisterService;
 class DispenserUsedSubscriber implements EventSubscriberInterface
 {
     private DispenserRepository $dispenserRepository;
-    public function __construct(DispenserRepository $dispenserRepository)
+    private SaleRegisterService $saleReisterService;
+    private int $litersSold;
+    private int $secondsUsed;
+    public function __construct(DispenserRepository $dispenserRepository, SaleRegisterService $saleRegisterService)
     {
         $this->dispenserRepository = $dispenserRepository;
+        $this->saleReisterService = $saleRegisterService;
     }
+    /**
+     * Summary of getSubscribedEvents
+     * @return array
+     */
     public static function getSubscribedEvents(): array
     {
         return [DispenserUsedEvent::NAME => [
-            ['updateAmount', 10],//9
-            //['updateStatus', 10],
+            ['updateAmount', 10],
+            ['registerSale', 9],
         ]];
     }
 
-    public function updateStatus(DispenserUsedEvent $event): void
+    /**
+     * Summary of registerSale
+     * @param DispenserUsedEvent $event
+     * @return void
+     */
+    public function registerSale(DispenserUsedEvent $event): void
     {
-        //
+        $dispenser = $this->dispenserRepository->findOneByIdOrFail(
+            $event->getDispenserId()
+        );
+
+        $this->litersSold = intval($this->calculateLitersSold($event, $dispenser));
+
+        $this->saleReisterService->register($event->getDispenserId(), $this->litersSold, $this->secondsUsed);
     }
 
     /**
@@ -51,10 +71,10 @@ class DispenserUsedSubscriber implements EventSubscriberInterface
      * @param Dispenser $dispenser
      * @return float
      */
-    private function calculateLitersSold($event, Dispenser $dispenser)
+    private function calculateLitersSold($event, Dispenser $dispenser): int
     {
-        $secondsDispensed = $event->getClosed()->getTimestamp() - $event->getOpened()->getTimestamp();
-        return $secondsDispensed * $dispenser->getDispenserFlowVolume();
+        $this->secondsUsed = intval($event->getClosed()->getTimestamp() - $event->getOpened()->getTimestamp());
+        return $this->secondsUsed * $dispenser->getDispenserFlowVolume();
         
     }
 }
