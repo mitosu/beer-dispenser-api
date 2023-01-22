@@ -9,16 +9,22 @@ use App\Repository\DispenserRepository;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use App\Entity\Dispenser;
 use App\Services\Sale\SaleRegisterService;
+use App\Repository\DispenseRepository;
 class DispenserUsedSubscriber implements EventSubscriberInterface
 {
     private DispenserRepository $dispenserRepository;
     private SaleRegisterService $saleReisterService;
+    private DispenseRepository $dispenseRepository;
     private int $litersSold;
     private int $secondsUsed;
-    public function __construct(DispenserRepository $dispenserRepository, SaleRegisterService $saleRegisterService)
+    public function __construct(
+        DispenserRepository $dispenserRepository, 
+        SaleRegisterService $saleRegisterService,
+        DispenseRepository $dispenseRespository)
     {
         $this->dispenserRepository = $dispenserRepository;
         $this->saleReisterService = $saleRegisterService;
+        $this->dispenseRepository = $dispenseRespository;
     }
     /**
      * Summary of getSubscribedEvents
@@ -29,6 +35,7 @@ class DispenserUsedSubscriber implements EventSubscriberInterface
         return [DispenserUsedEvent::NAME => [
             ['updateAmount', 10],
             ['registerSale', 9],
+            ['updateStatusDispense', 8]
         ]];
     }
 
@@ -65,6 +72,22 @@ class DispenserUsedSubscriber implements EventSubscriberInterface
 
         $this->dispenserRepository->save($dispenser);
     }
+
+    /**
+     * Summary of updateStatusDispense
+     * @param DispenserUsedEvent $event
+     * @return void
+     */
+    public function updateStatusDispense(DispenserUsedEvent $event)
+    {
+        $dispense = $this->dispenseRepository->findOneByIdAndStatusOrFail(
+            $event->getDispenserId(),
+            true
+        );
+
+        $this->dispenseRepository->updateStatus($dispense[0]['dispenser_id'], 0);
+    }
+
     /**
      * Summary of calculateLitersSold
      * @param mixed $event

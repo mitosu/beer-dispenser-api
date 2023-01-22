@@ -11,6 +11,9 @@ App\Entity\Dispenser:
           groups: ['write']
         openapi_context:
           summary: Create a new dispenser
+      summary:
+        method: 'GET'
+        path: '/dispensers'
   itemOperations:
       get:
         method: GET

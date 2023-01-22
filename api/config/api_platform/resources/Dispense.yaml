@@ -19,6 +19,9 @@ App\Entity\Dispense:
           groups: ['dispense_write']
         openapi_context:
           summary: Stop dispense to user.
+    summary:
+      method: 'GET'
+      path: '/dispenses'
   itemOperations:
     get:
         method: GET

@@ -31,6 +31,11 @@ class DispenseRepository extends BaseRepository
         $this->saveEntity($dispense);
     }
 
+    /**
+     * Summary of findOneByIdOrFail
+     * @param string $id
+     * @return Dispense
+     */
     public function findOneByIdOrFail(string $id): Dispense
     {
         if (null === $dispense = $this->objectRepository->find($id)) {
@@ -40,6 +45,12 @@ class DispenseRepository extends BaseRepository
         return $dispense;
     }
 
+    /**
+     * Summary of findOneByIdAndStatusOrFail
+     * @param string $dispenserId
+     * @param bool $status
+     * @return array
+     */
     public function findOneByIdAndStatusOrFail(string $dispenserId, bool $status)
     {
         $dispense = $this->executeFetchQuery(
@@ -52,5 +63,19 @@ class DispenseRepository extends BaseRepository
         }
 
         return $dispense;
+    }
+
+    /**
+     * Summary of updateStatusDispense
+     * @param string $dispenserId
+     * @param int $status
+     * @return void
+     */
+    public function updateStatus(string $dispenserId, int $status): void
+    {
+        $this->executeQuery(
+            'UPDATE dispense SET status = :status WHERE dispenser_id = :dispenser_id',
+            ['dispenser_id' => $dispenserId, 'status' => $status]
+        );
     }
 }
