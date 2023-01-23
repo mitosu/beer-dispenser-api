@@ -1,4 +1,4 @@
-App\Entity\Dispense:
+App\DispenserContext\Domain\Entity\Dispense:
   attributes:
     normalization_context:
       groups: ['dispense_read']
@@ -6,7 +6,7 @@ App\Entity\Dispense:
     post:
       method: POST
       path: /dispense/open
-      controller: App\Api\Action\Dispense\Open
+      controller: App\DispenserContext\Infrastructure\Api\Action\Dispense\Open
       denormalization_context:
           groups: ['dispense_write']
       openapi_context:
@@ -14,7 +14,7 @@ App\Entity\Dispense:
     post_close:
         method: POST
         path: /dispense/close
-        controller: App\Api\Action\Dispense\Close
+        controller: App\DispenserContext\Infrastructure\Api\Action\Dispense\Close
         denormalization_context:
           groups: ['dispense_write']
         openapi_context:

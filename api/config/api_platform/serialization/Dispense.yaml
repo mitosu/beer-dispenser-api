@@ -1,4 +1,4 @@
-App\Entity\Dispense:
+App\DispenserContext\Domain\Entity\Dispense:
   attributes:
     id:
       groups: ['dispense_read']

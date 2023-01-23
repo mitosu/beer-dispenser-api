@@ -1,4 +1,4 @@
-App\Entity\Dispenser:
+App\DispenserContext\Domain\Entity\Dispenser:
   attributes:
     normalization_context:
       groups: ['read']
@@ -6,7 +6,7 @@ App\Entity\Dispenser:
       create:
         method: POST
         path: /dispensers/create
-        controller: App\Api\Action\Dispenser\Create
+        controller: App\DispenserContext\Infrastructure\Api\Action\Dispenser\Create
         denormalization_context:
           groups: ['write']
         openapi_context:

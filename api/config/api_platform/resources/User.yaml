@@ -1,4 +1,4 @@
-App\Entity\User:
+App\DispenserContext\Domain\Entity\User:
   attributes:
     normalization_context:
       groups: ['user_read']
@@ -6,7 +6,7 @@ App\Entity\User:
     register:
       method: POST
       path: /users/register
-      controller: App\Api\Action\User\Register
+      controller: App\DispenserContext\Infrastructure\Api\Action\User\Register
       denormalization_context:
         groups: ['user_write']
       openapi_context:

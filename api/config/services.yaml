@@ -16,18 +16,18 @@ services:
     App\:
         resource: '../src/'
         exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
+            - '../src/DispenserContext/DependencyInjection/'
+            - '../src/DispenserContext/Domain/Entity/'
             - '../src/Kernel.php'
 
-    App\Api\Action\:
-        resource: '../src/Api/Action'
+    App\DispenserContext\Infrastructure\Api\Action\:
+        resource: '../src/DispenserContext/Infrastructure/Api/Action'
         tags: ['controller.service_arguments']
 
-    App\Api\Listener\TransformerExceptionToJsonResponse:
+    App\DispenserContext\Infrastructure\Api\Listener\TransformerExceptionToJsonResponse:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException, priority: 100 }
 
-    App\Listener\Dispenser\DispenserUsedSubscriber:
+    App\DispenserContext\Application\Listener\Dispenser\DispenserUsedSubscriber:
         tags:
             - { name: kernel.event_subscriber, event: dispenser.used }

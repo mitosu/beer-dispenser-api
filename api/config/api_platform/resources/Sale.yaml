@@ -1,4 +1,4 @@
-App\Entity\Sale:
+App\DispenserContext\Domain\Entity\Sale:
   attributes:
     normalization_context:
       groups: ['read']

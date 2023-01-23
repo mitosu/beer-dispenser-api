@@ -2,8 +2,8 @@
 
 namespace App\Tests\Services\Dispenser;
 
-use App\Entity\Dispenser;
-use App\Repository\DispenserRepository;
+use App\DispenserContext\Domain\Entity\Dispenser;
+use App\DispenserContext\Infrastructure\Repository\DispenserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class DispenserCreationServiceTest extends KernelTestCase

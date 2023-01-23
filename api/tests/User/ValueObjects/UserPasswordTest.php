@@ -3,7 +3,7 @@
 namespace App\Tests\User\ValueObjects;
 
 use PHPUnit\Framework\TestCase;
-use App\Entity\ValueObjects\User\UserPassword;
+use App\DispenserContext\Domain\Entity\ValueObjects\User\UserPassword;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class UserPasswordTest extends TestCase

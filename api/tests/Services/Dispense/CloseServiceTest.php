@@ -2,10 +2,10 @@
 
 namespace App\Tests\Services\Dispense;
 
-use App\Entity\Dispense;
-use App\Entity\User;
-use App\Entity\Dispenser;
-use App\Repository\DispenseRepository;
+use App\DispenserContext\Domain\Entity\Dispense;
+use App\DispenserContext\Domain\Entity\User;
+use App\DispenserContext\Domain\Entity\Dispenser;
+use App\DispenserContext\Infrastructure\Repository\DispenseRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class CloseServiceTest extends KernelTestCase

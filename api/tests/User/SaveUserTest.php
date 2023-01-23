@@ -2,8 +2,8 @@
 
 namespace App\Tests\User;
 
-use App\Entity\User;
-use App\Repository\UserRepository;
+use App\DispenserContext\Domain\Entity\User;
+use App\DispenserContext\Infrastructure\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class SaveUserTest extends KernelTestCase

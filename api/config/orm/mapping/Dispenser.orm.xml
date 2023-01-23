@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
     <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
-        <entity name="App\Entity\Dispenser" table="dispenser">
-            <id name="dispenserId" type="string" length="36"/>
+        <entity name="App\DispenserContext\Domain\Entity\Dispenser" table="dispenser">
+            <id name="id" type="string" length="36"/>
 
             <field name="dispenserFlowVolume" type="integer"/>
             <field name="dispenserAmount" type="integer"/>

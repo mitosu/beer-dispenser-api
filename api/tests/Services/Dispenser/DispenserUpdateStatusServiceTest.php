@@ -2,9 +2,9 @@
 
 namespace App\Tests\Services\Dispenser;
 
-use App\Entity\Dispenser;
-use App\Repository\DispenserRepository;
-use App\Services\Dispenser\DispenserUpdateStatus;
+use App\DispenserContext\Domain\Entity\Dispenser;
+use App\DispenserContext\Infrastructure\Repository\DispenserRepository;
+use App\DispenserContext\Application\Services\Dispenser\DispenserUpdateStatus;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class DispenserUpdateStatusServiceTest extends KernelTestCase

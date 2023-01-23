@@ -20,7 +20,7 @@ final class Version20230110202512 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $this->addSql(
-            'CREATE TABLE dispenser (dispenser_id VARCHAR(36) NOT NULL, 
+            'CREATE TABLE dispenser (id VARCHAR(36) NOT NULL, 
             dispenser_flow_volume INT NOT NULL, 
             dispenser_amount INT NOT NULL, 
             dispenser_status TINYINT(1) NOT NULL, 

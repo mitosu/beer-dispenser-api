@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
     <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
-        <entity name="App\Entity\Dispense" table="dispense">
+        <entity name="App\DispenserContext\Domain\Entity\Dispense" table="dispense">
             <id name="id" type="string" length="36"/>
 
             <field name="dispenserId" type="string"/>

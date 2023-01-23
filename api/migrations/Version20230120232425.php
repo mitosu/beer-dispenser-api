@@ -21,7 +21,7 @@ final class Version20230120232425 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql(
-            'CREATE TABLE sale (sale_id VARCHAR(36) NOT NULL, 
+            'CREATE TABLE sale (id VARCHAR(36) NOT NULL, 
             dispenser_id VARCHAR(36) NOT NULL, 
             liters_sold INT NOT NULL, 
             seconds_used INT NOT NULL, 

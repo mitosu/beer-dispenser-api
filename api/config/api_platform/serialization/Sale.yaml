@@ -1,6 +1,6 @@
-App\Entity\Sale:
+App\DispenserContext\Domain\Entity\Sale:
   attributes:
-    saleId:
+    id:
       groups: ['read']
     dispenserId: 
       groups: ['read']

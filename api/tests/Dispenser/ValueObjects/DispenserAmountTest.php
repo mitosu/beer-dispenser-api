@@ -3,7 +3,7 @@
 namespace App\Tests\Dispenser\ValueObjects;
 
 use PHPUnit\Framework\TestCase;
-use App\Entity\ValueObjects\Dispenser\DispenserAmount;
+use App\DispenserContext\Domain\Entity\ValueObjects\Dispenser\DispenserAmount;
 use InvalidArgumentException;
 
 class DispenserAmountTest extends TestCase

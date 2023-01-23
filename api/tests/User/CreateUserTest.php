@@ -3,7 +3,7 @@
 namespace App\Tests\User;
 
 use PHPUnit\Framework\TestCase;
-use App\Entity\User;
+use App\DispenserContext\Domain\Entity\User;
 
 class CreateUserTest extends TestCase
 {

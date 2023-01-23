@@ -3,7 +3,7 @@
 namespace App\Tests\User\ValueObjects;
 
 use PHPUnit\Framework\TestCase;
-use App\Entity\ValueObjects\User\UserName;
+use App\DispenserContext\Domain\Entity\ValueObjects\User\UserName;
 use InvalidArgumentException;
 
 class UserNameTest extends TestCase

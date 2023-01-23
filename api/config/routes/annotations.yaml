@@ -1,5 +1,5 @@
 controllers:
-    resource: ../../src/Api/Action
+    resource: ../../src/DispenserContext/Infrastructure/Api/Action
     type: annotation
     prefix: /api/v1
 

@@ -1,6 +1,6 @@
-App\Entity\Dispenser:
+App\DispenserContext\Domain\Entity\Dispenser:
   attributes:
-    dispenserId:
+    id:
       groups: ['read']
     dispenserFlowVolume: 
       groups: ['read', 'write']
